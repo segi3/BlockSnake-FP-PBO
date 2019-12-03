@@ -46,6 +46,7 @@ public class Snake extends Entity {
 	
 	public boolean checkCollisionWith(Entity e) {
 		
+		//eat food
 		if(e instanceof Food) {
 			if(location.get(0).getX() == e.getX() && location.get(0).getY() == e.getY()) {
 				
@@ -54,6 +55,7 @@ public class Snake extends Entity {
 			}
 		}
 		
+		//local player snake
 		if(e instanceof Snake) {
 			
 			Snake other = (Snake) e;

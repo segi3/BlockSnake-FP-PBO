@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 
 import com.BlockSnake.gui.SnakePanel;
 import com.BlockSnake.game.LocalPlayer;
-import com.BlockSnake.game.OnlineMode;
 import com.BlockSnake.game.SinglePlayer;
 
 public class Main {
@@ -22,12 +21,10 @@ public class Main {
 	//Game modes
 	public static SinglePlayer singleGame;
 	public static LocalPlayer localGame;
-	public static OnlineMode onlineGame;
 	
 	//Threads
 	public static Thread singleThread;
 	public static Thread localThread;
-	public static Thread onlineThread;
 	
 	public static void main(String[] args) {
 		
@@ -51,11 +48,9 @@ public class Main {
 		imgIcon = new ImageIcon("res/icon.png");
 		singleGame = new SinglePlayer();
 		localGame = new LocalPlayer();
-		onlineGame = new OnlineMode();
 		
 		singleThread = new Thread(singleGame);
 		localThread = new Thread(localGame);
-		onlineThread = new Thread(onlineGame);
 	}
 	
 	private static void configureWindow() {
@@ -83,13 +78,6 @@ public class Main {
 		localGame.reset();
 		localThread = new Thread(localGame);
 		localThread.start();
-	}
-	
-	public static void startOnlineGame(String host) {
-		
-		onlineGame.setIP(host);
-		onlineThread = new Thread(onlineGame);
-		onlineThread.start();
 	}
 	
 	public static void render() {

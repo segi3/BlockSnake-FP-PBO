@@ -66,22 +66,6 @@ public class Input implements KeyListener{
 			}
 		}
 		
-		if(Main.onlineThread.isAlive()) {
-			if(e.getKeyCode() == KeyEvent.VK_W) {
-				if(Main.onlineGame.getSnake(0).getDirection() != Direction.down)
-					Main.onlineGame.getSnake(0).setDirection(Direction.up);
-			}else if(e.getKeyCode() == KeyEvent.VK_D) {
-				if(Main.onlineGame.getSnake(0).getDirection() != Direction.left)
-					Main.onlineGame.getSnake(0).setDirection(Direction.right);
-			}else if(e.getKeyCode() == KeyEvent.VK_S) {
-				if(Main.onlineGame.getSnake(0).getDirection() != Direction.up)
-					Main.onlineGame.getSnake(0).setDirection(Direction.down);
-			}else if(e.getKeyCode() == KeyEvent.VK_A) {
-				if(Main.onlineGame.getSnake(0).getDirection() != Direction.right)
-					Main.onlineGame.getSnake(0).setDirection(Direction.left);
-			}
-		}
-		
 	}
 
 	@Override
