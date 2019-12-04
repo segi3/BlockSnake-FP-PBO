@@ -15,13 +15,14 @@ public class LocalPlayer extends GameMode implements Runnable {
 	//game properties
 	public static boolean running = false;
 	public static boolean paused = false;
+//	public static int dead = 0;
 	static int gameSpeed = 100000000;
 	
 	public LocalPlayer() {
 		
 		snakes = new ArrayList<Snake>();
 		snakes.add(new Snake());
-		snakes.add(new Snake(780, 780, Direction.left));
+		snakes.add(new Snake(480, 480, Direction.left));
 		food = new Food();
 	}
 	
@@ -46,6 +47,12 @@ public class LocalPlayer extends GameMode implements Runnable {
 					last = System.nanoTime();
 					tick();
 				}
+//				if(snakes.get(0).dead==true) {
+//					this.dead=1;
+//				if(snakes.get(1).dead == true) {
+//					this.dead = 2;
+//				}
+//				}
 			}
 		}
 	}
