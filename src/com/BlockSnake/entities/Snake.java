@@ -6,6 +6,14 @@ import java.util.ArrayList;
 
 import com.BlockSnake.Point;
 
+package com.BlockSnake.entities;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.ArrayList;
+
+import com.BlockSnake.Point;
+
 public class Snake extends Entity {
 	
 	//snake properties
@@ -18,6 +26,9 @@ public class Snake extends Entity {
 	private int originX;
 	private int originY;
 	private Direction defaultDirection;
+	
+
+	public static boolean dead = false;
 	
 	public Snake() {
 		
@@ -67,7 +78,7 @@ public class Snake extends Entity {
 					if (i==0) {
 						other.reset();
 					}
-					
+//					this.dead = true;
 					reset();
 				}
 			}
@@ -129,13 +140,37 @@ public class Snake extends Entity {
 		
 		//check for head self collision
 		for(int i = 1; i<location.size(); i++) {
-			if(location.get(0).equals(location.get(i)))
+			if(location.get(0).equals(location.get(i))) {
+//				this.dead = true;
 				reset();
+				
+			}
 		}
 		
-		//check border collision
-		if(location.get(0).getX() >= 800|| location.get(0).getX() < 0 || location.get(0).getY() >= 800 || location.get(0).getY() < 0) {
-			reset();
+//		check border collision
+//		if(location.get(0).getX() >= 500|| location.get(0).getX() < 0 || location.get(0).getY() >= 500 || location.get(0).getY() < 0) {
+//			reset();
+//		}
+		
+		if(location.get(0).getX() >= 500) {
+			
+			location.get(0).setPoint(0, location.get(0).getY());
+			setDirection(Direction.right);
+		}
+		
+		if(location.get(0).getX() <0) {
+			
+			location.get(0).setPoint(500 , location.get(0).getY());
+			setDirection(Direction.left);
+		}
+		if(location.get(0).getY() >=500) {
+			
+			location.get(0).setPoint(location.get(0).getX(), 0);
+			setDirection(Direction.down);
+		}
+		if(location.get(0).getY() <0) {
+			location.get(0).setPoint(location.get(0).getX(), 500);
+			setDirection(Direction.up);
 		}
 	}
 
@@ -153,3 +188,4 @@ public class Snake extends Entity {
 		g.drawString(String.valueOf(location.size()), location.get(0).getX() + offX, location.get(0).getY() + offY);
 	}
 }
+
