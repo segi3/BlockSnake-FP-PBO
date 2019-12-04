@@ -66,3 +66,4 @@ public class SinglePlayer extends GameMode implements Runnable {
 		return food;
 	}
 }
+
