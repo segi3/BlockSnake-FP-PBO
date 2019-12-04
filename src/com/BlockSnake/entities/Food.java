@@ -15,14 +15,14 @@ public class Food extends Entity {
 	
 	public Food() {
 		
-		this.X = new Random().nextInt(40) * SIZE;
-		this.Y = new Random().nextInt(40) * SIZE;
+		this.X = new Random().nextInt(25) * SIZE;
+		this.Y = new Random().nextInt(25) * SIZE;
 	}
 	
 	public void reset() {
 		
-		this.X = new Random().nextInt(40) * SIZE;
-		this.Y = new Random().nextInt(40) * SIZE;
+		this.X = new Random().nextInt(25) * SIZE;
+		this.Y = new Random().nextInt(25) * SIZE;
 	}
 
 	@Override
