@@ -29,8 +29,8 @@ public class SnakePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	//game size
-	public int W = 800;
-	public int H = 800;
+	public int W = 500;
+	public int H = 500;
 	
 	Screen screenState;
 	
@@ -229,6 +229,19 @@ public class SnakePanel extends JPanel {
 				
 				g.drawString("Paused", this.getWidth()/2, this.getHeight()/2);
 			}
+			
+//			if(LocalPlayer.dead==1 ) {
+//				g.drawString("P1 Game Over", this.getWidth()/3, this.getHeight()/3);
+//				LocalPlayer.dead = 0;
+//				Snake.dead = false;
+//			}
+//			
+//			if(LocalPlayer.dead==2 ) {
+//				g.drawString("P2 Game Over", this.getWidth()/3, this.getHeight()/3);
+//				LocalPlayer.dead = 0;
+//				Snake.dead = false;
+//			}
+			
 			break;
 			
 		}
