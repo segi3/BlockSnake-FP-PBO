@@ -28,7 +28,7 @@ public class Snake extends Entity {
 	private Direction defaultDirection;
 	
 
-	public static boolean dead = false;
+	private static boolean dead = false;
 	
 	public Snake() {
 		
@@ -77,8 +77,10 @@ public class Snake extends Entity {
 					
 					if (i==0) {
 						other.reset();
+						other.setDead(true);
 					}
-//					this.dead = true;
+
+					Snake.setDead(true);
 					reset();
 				}
 			}
@@ -115,6 +117,14 @@ public class Snake extends Entity {
 		return direction;
 	}
 	
+	public static boolean isDead() {
+		return dead;
+	}
+
+	public static void setDead(boolean dead) {
+		Snake.dead = dead;
+	}
+
 	@Override
 	public void tick() {
 		
@@ -141,7 +151,7 @@ public class Snake extends Entity {
 		//check for head self collision
 		for(int i = 1; i<location.size(); i++) {
 			if(location.get(0).equals(location.get(i))) {
-//				this.dead = true;
+				Snake.setDead(true);
 				reset();
 				
 			}
@@ -188,4 +198,3 @@ public class Snake extends Entity {
 		g.drawString(String.valueOf(location.size()), location.get(0).getX() + offX, location.get(0).getY() + offY);
 	}
 }
-
