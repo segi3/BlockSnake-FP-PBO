@@ -9,6 +9,8 @@ public class SinglePlayer extends GameMode implements Runnable {
 	//game properties
 	public static boolean running = false;
 	public static boolean paused = false;
+	public static boolean gameover = false;
+	public static int dead = 0;
 	static int gameSpeed = 100000000;
 	
 	//entities
@@ -27,6 +29,7 @@ public class SinglePlayer extends GameMode implements Runnable {
 		food.reset();
 		running = false;
 		paused = false;
+		gameover = false;
 	}
 	
 	@Override
@@ -36,10 +39,16 @@ public class SinglePlayer extends GameMode implements Runnable {
 		
 		Long last = System.nanoTime();
 		while(running) {
-			if(!paused) {
-				if(System.nanoTime() - last > gameSpeed) {
-					last = System.nanoTime();
-					tick();
+			if(!gameover) {
+				if(!paused) {
+					if(System.nanoTime() - last > gameSpeed) {
+						last = System.nanoTime();
+						tick();
+					}
+				}
+				if(Snake.isDead()==true) {
+					SinglePlayer.dead=1;
+					gameover=true;
 				}
 			}
 		}
@@ -66,4 +75,3 @@ public class SinglePlayer extends GameMode implements Runnable {
 		return food;
 	}
 }
-
