@@ -27,42 +27,60 @@ public class Input implements KeyListener{
 				if(Main.singleGame.getSnake().getDirection() != Direction.right)
 					Main.singleGame.getSnake().setDirection(Direction.left);
 			}else if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+				if(SinglePlayer.gameover == false)
 				SinglePlayer.paused = !SinglePlayer.paused;
+			}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+				if (SinglePlayer.gameover == true) {
+					SinglePlayer.dead = 0;
+					Snake.setDead(false);
+					SinglePlayer.gameover = false;
+				}
 			}
+				
 		}
 		
 		if(Main.localThread.isAlive()) {
 			if(e.getKeyCode() == KeyEvent.VK_W) {
-				if(Main.localGame.getSnake(0).getDirection() != Direction.down)
-					Main.localGame.getSnake(0).setDirection(Direction.up);
+				if(Main.localGame.P1.getDirection() != Direction.down)
+					Main.localGame.P1.setDirection(Direction.up);
 			}else if(e.getKeyCode() == KeyEvent.VK_D) {
-				if(Main.localGame.getSnake(0).getDirection() != Direction.left)
-					Main.localGame.getSnake(0).setDirection(Direction.right);
+				if(Main.localGame.P1.getDirection() != Direction.left)
+					Main.localGame.P1.setDirection(Direction.right);
 			}else if(e.getKeyCode() == KeyEvent.VK_S) {
-				if(Main.localGame.getSnake(0).getDirection() != Direction.up)
-					Main.localGame.getSnake(0).setDirection(Direction.down);
+				if(Main.localGame.P1.getDirection() != Direction.up)
+					Main.localGame.P1.setDirection(Direction.down);
 			}else if(e.getKeyCode() == KeyEvent.VK_A) {
-				if(Main.localGame.getSnake(0).getDirection() != Direction.right)
-					Main.localGame.getSnake(0).setDirection(Direction.left);
+				if(Main.localGame.P1.getDirection() != Direction.right)
+					Main.localGame.P1.setDirection(Direction.left);
 			}else if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-				LocalPlayer.paused = !LocalPlayer.paused;
-				if(!LocalPlayer.running) {
-					LocalPlayer.running = true;
+				if(LocalPlayer.gameover == false) {
+					LocalPlayer.paused = !LocalPlayer.paused;
+					if(!LocalPlayer.running) {
+						LocalPlayer.running = true;
+					}
+				}
+			}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+				if (LocalPlayer.gameover == true) {
+					LocalPlayer.P1.setDead(false);
+					LocalPlayer.P2.setDead(false);
+					LocalPlayer.dead1 = false;
+					LocalPlayer.dead2 = false;
+					LocalPlayer.gameover = false;
 				}
 			}
 			
 			if(e.getKeyCode() == KeyEvent.VK_UP) {
-				if(Main.localGame.getSnake(1).getDirection() != Direction.down)
-					Main.localGame.getSnake(1).setDirection(Direction.up);
+				if(Main.localGame.P2.getDirection() != Direction.down)
+					Main.localGame.P2.setDirection(Direction.up);
 			}else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				if(Main.localGame.getSnake(1).getDirection() != Direction.left)
-					Main.localGame.getSnake(1).setDirection(Direction.right);
+				if(Main.localGame.P2.getDirection() != Direction.left)
+					Main.localGame.P2.setDirection(Direction.right);
 			}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-				if(Main.localGame.getSnake(1).getDirection() != Direction.up)
-					Main.localGame.getSnake(1).setDirection(Direction.down);
+				if(Main.localGame.P2.getDirection() != Direction.up)
+					Main.localGame.P2.setDirection(Direction.down);
 			}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-				if(Main.localGame.getSnake(1).getDirection() != Direction.right)
-					Main.localGame.getSnake(1).setDirection(Direction.left);
+				if(Main.localGame.P2.getDirection() != Direction.right)
+					Main.localGame.P2.setDirection(Direction.left);
 			}
 		}
 		
