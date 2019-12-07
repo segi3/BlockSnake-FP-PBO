@@ -198,7 +198,12 @@ public class SnakePanel extends JPanel {
 			
 			if(SinglePlayer.paused) {
 				
-				g.drawString("Paused", this.getWidth()/2, this.getHeight()/2);
+				g.drawString("Paused", this.getWidth()/2-15, this.getHeight()/2);
+			}
+			
+			if(SinglePlayer.dead==1 ) {
+				g.drawString("Game Over", this.getWidth()/2-20, this.getHeight()/2-10);
+				g.drawString("Click SPACE to Continue", this.getWidth()/2-55, this.getHeight()/2+5);
 			}
 			
 			break;
@@ -222,25 +227,27 @@ public class SnakePanel extends JPanel {
 			
 			//Render entities
 			Main.localGame.getFood().render(g, Color.GREEN, offsetX, offsetY);
-			Main.localGame.getSnake(0).render(g, Color.RED, offsetX, offsetY);
-			Main.localGame.getSnake(1).render(g, Color.BLUE, offsetX, offsetY);
+			Main.localGame.P1.render(g, Color.RED, offsetX, offsetY);
+			Main.localGame.P2.render(g, Color.BLUE, offsetX, offsetY);
 			
 			if(LocalPlayer.paused) {
 				
-				g.drawString("Paused", this.getWidth()/2, this.getHeight()/2);
+				g.drawString("Paused", this.getWidth()/2-15, this.getHeight()/2);
 			}
 			
-//			if(LocalPlayer.dead==1 ) {
-//				g.drawString("P1 Game Over", this.getWidth()/3, this.getHeight()/3);
-//				LocalPlayer.dead = 0;
-//				Snake.dead = false;
+			if(LocalPlayer.dead2==true && LocalPlayer.dead1==true) {
+				g.drawString("Game Over", this.getWidth()/2-20, this.getHeight()/2-10);
+				g.drawString("Click SPACE to Continue", this.getWidth()/2-55, this.getHeight()/2+5);
+			}
+			
+//			else if(LocalPlayer.dead2==true ) {
+//				g.drawString("P2 Game Over", this.getWidth()/2, this.getHeight()/2);
 //			}
 //			
-//			if(LocalPlayer.dead==2 ) {
-//				g.drawString("P2 Game Over", this.getWidth()/3, this.getHeight()/3);
-//				LocalPlayer.dead = 0;
-//				Snake.dead = false;
+//			else if(LocalPlayer.dead1==true ) {
+//				g.drawString("P1 Game Over", this.getWidth()/2, this.getHeight()/2);
 //			}
+			
 			
 			break;
 			
