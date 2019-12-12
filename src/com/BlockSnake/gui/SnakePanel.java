@@ -195,13 +195,15 @@ public class SnakePanel extends JPanel {
 			//Render entities
 			Main.singleGame.getFood().render(g, Color.GREEN, offsetX, offsetY);
 			Main.singleGame.getSnake().render(g, Color.RED, offsetX, offsetY);
+			Main.singleGame.getPoison().render(g, Color.PINK, offsetX, offsetY);
 			
 			if(SinglePlayer.paused) {
 				
 				g.drawString("Paused", this.getWidth()/2-15, this.getHeight()/2);
 			}
 			
-			if(SinglePlayer.dead==1 ) {
+			if(SinglePlayer.dead == 1 ) {
+				g.setColor(Color.WHITE);
 				g.drawString("Game Over", this.getWidth()/2-20, this.getHeight()/2-10);
 				g.drawString("Click SPACE to Continue", this.getWidth()/2-55, this.getHeight()/2+5);
 			}
@@ -227,6 +229,7 @@ public class SnakePanel extends JPanel {
 			
 			//Render entities
 			Main.localGame.getFood().render(g, Color.GREEN, offsetX, offsetY);
+			Main.localGame.getPoison().render(g, Color.PINK, offsetX, offsetY);
 			Main.localGame.P1.render(g, Color.RED, offsetX, offsetY);
 			Main.localGame.P2.render(g, Color.BLUE, offsetX, offsetY);
 			

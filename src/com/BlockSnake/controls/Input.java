@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import com.BlockSnake.Main;
 import com.BlockSnake.entities.Direction;
+import com.BlockSnake.entities.Snake;
 import com.BlockSnake.game.LocalPlayer;
 import com.BlockSnake.game.SinglePlayer;
 

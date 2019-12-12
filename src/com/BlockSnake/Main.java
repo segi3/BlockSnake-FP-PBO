@@ -1,5 +1,7 @@
 package com.BlockSnake;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
@@ -8,6 +10,9 @@ import javax.swing.JFrame;
 import com.BlockSnake.gui.SnakePanel;
 import com.BlockSnake.game.LocalPlayer;
 import com.BlockSnake.game.SinglePlayer;
+
+import java.applet.Applet;
+import java.applet.AudioClip;
 
 public class Main {
 	
@@ -26,13 +31,18 @@ public class Main {
 	public static Thread singleThread;
 	public static Thread localThread;
 	
+	static AudioClip clip1 = Applet.newAudioClip(SinglePlayer.class.getResource("background-music.wav"));
+	
+	
 	public static void main(String[] args) {
 		
+		clip1.play();
+		clip1.loop();
 		init();
 		configureWindow();
 		run();
 	}
-	
+
 	private static void run() {
 		
 		while(true) {

@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 import com.BlockSnake.Point;
 
-package com.BlockSnake.entities;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -78,12 +76,33 @@ public class Snake extends Entity {
 					if (i==0) {
 						other.reset();
 						other.setDead(true);
+						
 					}
 
 					Snake.setDead(true);
 					reset();
 				}
 			}
+		}
+		
+		if(e instanceof Poison) {
+			
+			if(location.get(0).getX() == e.getX() && location.get(0).getY() == e.getY()) {
+				
+			if(location.size() == 1) {
+				
+				Snake.setDead(true);
+				reset();
+				
+				return false;
+			}
+			
+			decreaseLength();
+			
+			return true;
+				
+			}
+			
 		}
 		
 		return false;
@@ -105,6 +124,11 @@ public class Snake extends Entity {
 	public void increaseLength() {
 		
 		location.add(new Point(location.get(location.size()-1)));
+	}
+	
+	public void decreaseLength() {
+		
+		location.remove(location.size()-1);
 	}
 	
 	public void setDirection(Direction d) {
@@ -170,7 +194,7 @@ public class Snake extends Entity {
 		
 		if(location.get(0).getX() <0) {
 			
-			location.get(0).setPoint(500 , location.get(0).getY());
+			location.get(0).setPoint(500-20 , location.get(0).getY());
 			setDirection(Direction.left);
 		}
 		if(location.get(0).getY() >=500) {

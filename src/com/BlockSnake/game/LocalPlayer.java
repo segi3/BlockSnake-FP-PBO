@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 import com.BlockSnake.entities.Direction;
 import com.BlockSnake.entities.Food;
+import com.BlockSnake.entities.Poison;
 import com.BlockSnake.entities.Snake;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.URL;
 
 public class LocalPlayer extends GameMode implements Runnable {
 
@@ -13,6 +17,12 @@ public class LocalPlayer extends GameMode implements Runnable {
 	public static Snake P1;
 	public static Snake P2;
 	Food food;
+	Poison poison;
+	
+	//SFX
+	AudioClip ateFood = Applet.newAudioClip(SinglePlayer.class.getResource("ateFood.wav"));
+	AudioClip atePoison = Applet.newAudioClip(SinglePlayer.class.getResource("atePoison.wav"));
+	AudioClip gameOver = Applet.newAudioClip(SinglePlayer.class.getResource("Game-Over.wav"));
 	
 	//game properties
 	public static boolean running = false;
@@ -30,6 +40,7 @@ public class LocalPlayer extends GameMode implements Runnable {
 		P1 = new Snake();
 		P2 = new Snake(480, 480, Direction.left);
 		food = new Food();
+		poison = new Poison();
 	}
 	
 	public void reset() {
@@ -39,6 +50,7 @@ public class LocalPlayer extends GameMode implements Runnable {
 		P1.reset();
 		P2.reset();
 		food.reset();
+		poison.reset();
 		running = false;
 		paused = false;
 		gameover = false;
@@ -55,22 +67,17 @@ public class LocalPlayer extends GameMode implements Runnable {
 //				System.out.println(P1.isDead()==P2.isDead());
 				if(P1.isDead()==true) {
 //					System.out.println(LocalPlayer.dead);
+					gameOver.play();
 					LocalPlayer.dead1=true;
 					gameover=true;
 				}
 				if(P2.isDead() == true) {
 
 //					System.out.println(LocalPlayer.dead);
+					gameOver.play();
 					LocalPlayer.dead2 = true;
 					gameover=true;
 				}
-//				if(P2.isDead() == true && P1.isDead()==true) {
-//
-////					System.out.println(LocalPlayer.dead);
-//					LocalPlayer.dead2 = true;
-//					LocalPlayer.dead1=true;
-//					gameover=true;
-//				}
 				if(!paused) {
 					if(System.nanoTime() - last > gameSpeed) {
 						last = System.nanoTime();
@@ -88,12 +95,23 @@ public class LocalPlayer extends GameMode implements Runnable {
 		P1.tick();
 		P2.tick();
 		food.tick();
+		poison.tick();
 		
 		if(P1.checkCollisionWith(food)) {
+			ateFood.play();
 			food = new Food();
 		}
 		if(P2.checkCollisionWith(food)) {
+			ateFood.play();
 			food = new Food();
+		}
+		if(P1.checkCollisionWith(poison)) {
+			atePoison.play();
+			poison = new Poison();
+		}
+		if(P2.checkCollisionWith(poison)) {
+			atePoison.play();
+			poison = new Poison();
 		}
 		if(P1.checkCollisionWith(P2)) {
 			food = new Food();
@@ -111,5 +129,10 @@ public class LocalPlayer extends GameMode implements Runnable {
 	public Food getFood() {
 		
 		return food;
+	}
+	
+	public Poison getPoison() {
+		
+		return poison;
 	}
 }
